@@ -122,9 +122,15 @@ class Calculadora:
     def calcular(self):
         calculo = self.entryVisor.get()
         calculo = str(calculo).replace('x', '*')
-        
+
         self.entryVisor.delete(0, END)
-        self.entryVisor.insert(0, eval(calculo))
+
+        try:
+            self.entryVisor.insert(0, eval(calculo))
+        except ZeroDivisionError:
+            self.entryVisor.insert(0, 'Não se pode dividir por zero')
+        except:
+            self.entryVisor.insert(0, 'Houve algum erro')
 
 
 # Chamando classe
